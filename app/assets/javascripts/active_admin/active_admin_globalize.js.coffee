@@ -21,6 +21,13 @@ $ ->
         $tab.addClass('hidden').hide().addClass('hidden')
         $addButton.show().removeClass('hidden')
 
+    switchToTab = ($tab, $tabs, $contents) ->
+      if $tab && $tab.length > 0
+        $tab.eq(0).click()
+      else
+        $tabs.removeClass("active")
+        $contents.hide()
+
     $(".activeadmin-translations > ul").each ->
       $dom = $(this)
       # true when tabs are used in show action, false in form
@@ -39,8 +46,6 @@ $ ->
           $contents.hide()
           $contents.filter($tab.attr("href")).show()
           e.preventDefault()
-
-        $tabs.eq(0).click()
 
         # Add button and other behavior is not needed in show action
         return if showAction
@@ -70,7 +75,7 @@ $ ->
           $tab = $(this).parent()
           toggleTab($tab, false)
           if $tab.hasClass('active')
-            $tabs.not('.hidden').eq(0).click()
+            switchToTab $tabs.not('.hidden').eq(0), $tabs, $contents
 
           updateLocaleButtonsStatus($dom)
 
@@ -133,7 +138,9 @@ $ ->
 
         #Initially update the buttons' status
         updateLocaleButtonsStatus($dom)
-        $tabs.filter('.default').click()
+        $nextActiveTab = $tabs.filter('.default')
+        $nextActiveTab = $tabs.filter(':not(.hidden)').eq(0) if !$nextActiveTab.length
+        switchToTab $nextActiveTab, $tabs, $contents
 
   # this is to handle elements created with has_many
   $("a").bind "click", ->
