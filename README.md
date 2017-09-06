@@ -22,6 +22,11 @@ As soon as ActiveAdmin 1.x is released to rubygems, I'll release the gem with no
 
 Previous version with support for Rails 3 is maintained in branch [support/0.6.x](https://github.com/fabn/activeadmin-globalize/tree/support/0.6.x)
 
+## Require Assets
+
+- active_admin.js: `//= require active_admin/active_admin_globalize.js`
+- active_admin.css: `*= require active_admin/active_admin_globalize`
+
 ## Your model
 
 ```ruby
@@ -72,7 +77,7 @@ form do |f|
 end
 
 # You can also set locales to show in tabs
-# For example we want to show English translation fields without tab, and want to show other languages within tabs 
+# For example we want to show English translation fields without tab, and want to show other languages within tabs
 form do |f|
   # ...
   f.inputs do
