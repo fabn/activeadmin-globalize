@@ -2,9 +2,9 @@ sudo: false
 language: ruby
 # Limit ruby versions to currently supported versions to avoid a big build matrix
 rvm:
-  - 2.2.7
-  - 2.3.4
-  - 2.4.1
+  - 2.2.9
+  - 2.3.6
+  - 2.4.3
 # Load database schema before rake
 before_script: bundle exec rake db:schema:load
 # Test on all supported rails versions
