@@ -136,7 +136,7 @@ $ ->
         $tabs.filter('.default').click()
 
   # this is to handle elements created with has_many
-  $("a").bind "click", ->
+  $("a").on "click", ->
     setTimeout(
       -> translations()
       50
