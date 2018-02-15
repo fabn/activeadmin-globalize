@@ -32,6 +32,10 @@ module ActiveAdmin
             inputs_for_nested_attributes(
               for: [:translations, translation ],
               class: "inputs locale locale-#{translation.locale}",
+              # permit_params :translation_attributes => [:name, :description] does
+              # not permit "translation_attributes" => {"en" => {:name =>, "", :description => ""}, "de" => ...}
+              # While the keys can be arbitrary, they must be integers
+              for_options: {child_index: translation.locale.to_s.bytes.select{|b| b != 45}.map{|b| b - 27}.join()},
               &fields
             )
           end.join.html_safe
