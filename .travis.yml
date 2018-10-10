@@ -4,7 +4,7 @@ language: ruby
 rvm:
   - 2.2.7
   - 2.3.4
-  - 2.4.1
+  - 2.4.3
 # Load database schema before rake
 before_script: bundle exec rake db:schema:load
 # Test on all supported rails versions
@@ -12,3 +12,4 @@ gemfile:
   - gemfiles/rails4_2.gemfile
   - gemfiles/rails5_0.gemfile
   - gemfiles/rails5_1.gemfile
+  - gemfiles/rails5_2.gemfile
